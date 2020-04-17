@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Board from './Board';
-import { relative } from 'path';
 import { GAME_SIZE } from '../settings/constants';
 
 function App() {
