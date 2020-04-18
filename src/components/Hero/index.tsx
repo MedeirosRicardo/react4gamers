@@ -1,32 +1,16 @@
-import React, { useState } from 'react';
-import { TILE_SIZE, HEAD_OFFSET } from '../../settings/constants';
-import useEventListener from '@use-it/event-listener';
+import React from 'react';
+import { TILE_SIZE, HEAD_OFFSET, EDirection } from '../../settings/constants';
+import useHeroMovement from '../../hooks/useHeroMovement';
 
 import './index.css';
 
+const initialPosition = {
+    x: 15,
+    y: 15
+}
+
 const Hero = () => {
-
-    const initialPosition = {
-        x: 15,
-        y: 15
-    }
-
-    const [positionState, updatePositionState] = useState(initialPosition);
-    const [heroDirection, updateHeroDirection] = useState({direction: 'RIGHT'});
-
-    useEventListener('keydown', (event: any) => {
-        if (event.key === 'ArrowLeft') {
-            updatePositionState({ x: positionState.x - 1, y: positionState.y });
-            updateHeroDirection({direction: 'LEFT'});
-        } else if (event.key === 'ArrowRight') {
-            updatePositionState({ x: positionState.x + 1, y: positionState.y });
-            updateHeroDirection({ direction: 'RIGHT'});
-        } else if (event.key === 'ArrowDown') {
-            updatePositionState({ x: positionState.x, y: positionState.y - 1 });    
-        } else if (event.key === 'ArrowUp') {
-            updatePositionState({ x: positionState.x, y: positionState.y + 1 });
-        }
-    });
+    const { position, direction} = useHeroMovement(initialPosition);
     
 
     return (
@@ -39,9 +23,10 @@ const Hero = () => {
                 backgroundPosition: `0PX -${TILE_SIZE - HEAD_OFFSET}px`,
                 animation: "hero-animation 1s steps(4) infinite",
                 position: "absolute",
-                bottom: TILE_SIZE * positionState.y,
-                left: TILE_SIZE * positionState.x,
-                transform: `scaleX(${heroDirection.direction === 'RIGHT' ? 1 : -1})`
+                bottom: TILE_SIZE * position.y,
+                left: TILE_SIZE * position.x,
+                transform: `scaleX(${direction === EDirection.RIGHT ? 1 : -1})`,
+                zIndex: 1
             }}
         />
     );

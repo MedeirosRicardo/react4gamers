@@ -1,9 +1,12 @@
 import React from 'react';
-import { TILE_SIZE, DEMON_TILE_SIZE } from '../../settings/constants';
+import { TILE_SIZE, DEMON_TILE_SIZE, EDirection } from '../../settings/constants';
+import useEnemyMovement from '../../hooks/useEnemyMovement';
 
 import './index.css';
 
 const Demon = () => {
+    const movement = useEnemyMovement({ x: 5, y: 5});
+
     return (
         <div
             style={{
@@ -13,8 +16,9 @@ const Demon = () => {
                 backgroundRepeat: "no-repeat",
                 animation: "demon-animation 1s steps(4) infinite",
                 position: "absolute",
-                bottom: TILE_SIZE * 5,
-                left: TILE_SIZE * 5
+                bottom: TILE_SIZE * movement.position.y,
+                left: TILE_SIZE * movement.position.x,
+                transform: `scaleX(${movement.direction === EDirection.RIGHT ? 1 : -1})`
             }}
         />
     );
