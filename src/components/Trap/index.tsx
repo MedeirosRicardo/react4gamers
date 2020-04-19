@@ -13,7 +13,7 @@ const Trap = () => {
                 backgroundRepeat: "no-repeat",
                 animation: "trap-animation 1s steps(8) infinite",
                 position: "absolute",
-                bottom: TILE_SIZE * 10,
+                top: TILE_SIZE * 10,
                 left: TILE_SIZE * 4
             }}
         />

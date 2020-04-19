@@ -16,7 +16,7 @@ const Demon = () => {
                 backgroundRepeat: "no-repeat",
                 animation: "demon-animation 1s steps(4) infinite",
                 position: "absolute",
-                bottom: TILE_SIZE * movement.position.y,
+                top: TILE_SIZE * movement.position.y,
                 left: TILE_SIZE * movement.position.x,
                 transform: `scaleX(${movement.direction === EDirection.RIGHT ? 1 : -1})`
             }}

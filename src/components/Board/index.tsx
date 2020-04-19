@@ -12,7 +12,8 @@ const Board = () => {
             <Trap />
             <Chest />
             <Demon />
-            <MiniDemon />
+            <MiniDemon initialPosition={{ x: 10, y: 8}} />
+            <MiniDemon initialPosition={{ x: 10, y: 10}} />
             <Hero />
             <img src="./assets/tileset.gif" alt="" width={GAME_SIZE} height={GAME_SIZE} />
         </div>
