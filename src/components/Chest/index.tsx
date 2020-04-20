@@ -3,7 +3,11 @@ import { TILE_SIZE } from '../../settings/constants';
 
 import './index.css';
 
-const Chest = () => {
+interface IProps {
+    initialPosition: { x: number, y: number };
+};
+
+const Chest = (props: IProps) => {
     return (
         <div
             style={{
@@ -13,8 +17,8 @@ const Chest = () => {
                 backgroundRepeat: "no-repeat",
                 animation: "chest-animation 1s steps(3) infinite",
                 position: "absolute",
-                top: TILE_SIZE * 8,
-                left: TILE_SIZE * 8
+                top: TILE_SIZE * props.initialPosition.y,
+                left: TILE_SIZE * props.initialPosition.x
             }}
         />
     );

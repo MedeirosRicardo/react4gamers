@@ -3,7 +3,7 @@ import Tile from './Tile';
 import { canvas } from '../../contexts/canvas/helpers';
 
 function getCanvasMap() {
-    const tilesArray = [];
+    const tileArray = [];
 
     for (let i = 0; i < canvas.length; i++) {
         const canvasY = canvas[i];
@@ -13,19 +13,19 @@ function getCanvasMap() {
             const position = { x: j, y: i };
             const text = canvas[i][j];
 
-            tilesArray.push(<Tile position={position} text={text} />);
+            tileArray.push(<Tile key={`${i}-${j}`} position={position} text={text} />);
         }
     }
-    return tilesArray;
+    return tileArray;
 }
 
 function Debugger() {
 
-    const tiles = getCanvasMap();
+    const tile = getCanvasMap();
 
     return (
         <div>
-            {tiles}
+            {tile}
         </div>
     );
 }

@@ -4,13 +4,12 @@ import useHeroMovement from '../../hooks/useHeroMovement';
 
 import './index.css';
 
-const initialPosition = {
-    x: 15,
-    y: 15
-}
+interface IProps {
+    initialPosition: { x: number, y: number} 
+};
 
-const Hero = () => {
-    const { position, direction} = useHeroMovement(initialPosition);
+const Hero = (props: IProps) => {
+    const { position, direction} = useHeroMovement(props.initialPosition);
     
 
     return (
@@ -23,7 +22,7 @@ const Hero = () => {
                 backgroundPosition: `0PX -${TILE_SIZE - HEAD_OFFSET}px`,
                 animation: "hero-animation 1s steps(4) infinite",
                 position: "absolute",
-                top: TILE_SIZE * position.y,
+                top: TILE_SIZE * position.y - HEAD_OFFSET,
                 left: TILE_SIZE * position.x,
                 transform: `scaleX(${direction === EDirection.RIGHT ? 1 : -1})`,
                 zIndex: 1
