@@ -70,7 +70,7 @@ export function checkValidMovement(nextPosition: any) {
         console.log('Stepped on chest');
     }
 
-    if (canvasValue === ECanvas.CHEST) {
+    if (canvasValue === ECanvas.TRAP) {
         console.log('Stepped on trap');
     }
 
