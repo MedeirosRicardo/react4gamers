@@ -1,6 +1,6 @@
 import { EDirection, ECharacter } from "../../settings/constants";
 
-export function handleNextPosition(direction: any, position: any) {
+export function handleNextPosition(direction, position) {
     switch(direction) {
         case EDirection.LEFT:
             return { x: position.x - 1, y: position.y };
@@ -59,14 +59,14 @@ export const canvas = [
     [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL ],
 ];
 
-export function checkValidMovement(nextPosition: any, character: any) {
+export function checkValidMovement(nextPosition, character) {
     const canvasValue = canvas[nextPosition.y][nextPosition.x];
 
     const result = character === ECharacter.HERO ? getHeroValidMoves(canvasValue) : getEnemyValidMoves(canvasValue);
     return result;
 }
 
-function getHeroValidMoves(canvasValue: any) {
+function getHeroValidMoves(canvasValue) {
     return {
         valid: canvasValue === ECanvas.FLOOR || canvasValue === ECanvas.CHEST || canvasValue === ECanvas.TRAP || canvasValue === ECanvas.MINI_DEMON || canvasValue === ECanvas.DEMON,
         dead: canvasValue === ECanvas.TRAP || canvasValue === ECanvas.MINI_DEMON || canvasValue === ECanvas.DEMON,
@@ -75,7 +75,7 @@ function getHeroValidMoves(canvasValue: any) {
     }
 }
 
-function getEnemyValidMoves(canvasValue: any) {
+function getEnemyValidMoves(canvasValue) {
     return {
         valid: canvasValue === ECanvas.FLOOR || canvasValue === ECanvas.HERO,
         dead: false,

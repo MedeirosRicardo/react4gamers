@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Tile from './Tile';
 import { CanvasContext } from '../../contexts/canvas';
 
-function getCanvasMap(canvas: any) {
+function getCanvasMap(canvas) {
     const tileArray = [];
 
     for (let i = 0; i < canvas.length; i++) {

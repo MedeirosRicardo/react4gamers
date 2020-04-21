@@ -4,7 +4,7 @@ import { EDirection, ECharacter } from '../../settings/constants';
 import { CanvasContext } from '../../contexts/canvas';
 import { ChestsContext } from '../../contexts/chests';
 
-function useHeroMovement(initialPosition: any) {
+function useHeroMovement(initialPosition) {
 
     const canvasContext = useContext(CanvasContext);
     const chestsContext = useContext(ChestsContext);
@@ -13,7 +13,7 @@ function useHeroMovement(initialPosition: any) {
     const [direction, updateDirectoinState] = useState(EDirection.RIGHT);
 
     useEventListener('keydown', (event: any) => {
-        const direction = event.key as EDirection;
+        const direction = event.key;
         
         if (event.key.indexOf('Arrow') === -1) {
             return;

@@ -14,7 +14,7 @@ export const CanvasContext = createContext({
 export function CavasProvider(props: IProps) {
     const [canvasState, updateCanvasState] = useState({
         canvas: canvas,
-        updateCanvas: (direction: any, currentPosition: any, character: any) => {
+        updateCanvas: (direction, currentPosition, character) => {
             const nextPosition = handleNextPosition(direction, currentPosition);
             const nextMove = checkValidMovement(nextPosition, character);
 
