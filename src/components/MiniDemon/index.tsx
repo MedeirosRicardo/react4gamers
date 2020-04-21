@@ -10,7 +10,6 @@ interface IProps {
 
 const MiniDemon = (props: IProps) => {
     
-
     const movement = useEnemyMovement(props.initialPosition);
 
     return (

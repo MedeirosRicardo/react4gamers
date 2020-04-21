@@ -11,3 +11,8 @@ export enum EDirection {
     UP = "ArrowUp",
     DOWN = "ArrowDown"
 }
+
+export enum ECharacter {
+    HERO = 'hero',
+    ENEMY = 'enemy'
+}

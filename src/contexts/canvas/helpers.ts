@@ -1,4 +1,4 @@
-import { EDirection } from "../../settings/constants";
+import { EDirection, ECharacter } from "../../settings/constants";
 
 export function handleNextPosition(direction: any, position: any) {
     switch(direction) {
@@ -54,25 +54,32 @@ export const canvas = [
     [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, CH, FL, FL, FL, WL ],
     [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL ],
     [WL, FL, FL, FL, TR, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL ],
-    [WL, HE, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, FL, WL ],
+    [WL, HE, WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, TR, FL, FL, WL ],
     [WL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, FL, WL ],
     [WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL, WL ],
 ];
 
-export function checkValidMovement(nextPosition: any) {
+export function checkValidMovement(nextPosition: any, character: any) {
     const canvasValue = canvas[nextPosition.y][nextPosition.x];
 
-    if (canvasValue === ECanvas.WALL) {
-        return false;
-    }
+    const result = character === ECharacter.HERO ? getHeroValidMoves(canvasValue) : getEnemyValidMoves(canvasValue);
+    return result;
+}
 
-    if (canvasValue === ECanvas.CHEST) {
-        console.log('Stepped on chest');
+function getHeroValidMoves(canvasValue: any) {
+    return {
+        valid: canvasValue === ECanvas.FLOOR || canvasValue === ECanvas.CHEST || canvasValue === ECanvas.TRAP || canvasValue === ECanvas.MINI_DEMON || canvasValue === ECanvas.DEMON,
+        dead: canvasValue === ECanvas.TRAP || canvasValue === ECanvas.MINI_DEMON || canvasValue === ECanvas.DEMON,
+        chest: canvasValue === ECanvas.CHEST,
+        door: canvasValue === ECanvas.DOOR
     }
+}
 
-    if (canvasValue === ECanvas.TRAP) {
-        console.log('Stepped on trap');
+function getEnemyValidMoves(canvasValue: any) {
+    return {
+        valid: canvasValue === ECanvas.FLOOR || canvasValue === ECanvas.HERO,
+        dead: false,
+        chest: false,
+        door: false
     }
-
-    return true;
 }
