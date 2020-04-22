@@ -27,11 +27,21 @@ function useHeroMovement(initialPosition) {
         }
 
         if (movement.nextMove.dead) {
-            alert('DEAD');
+            setTimeout(() => {
+                alert('DEAD');
+                window.location.reload();
+            });
         }
 
         if (movement.nextMove.chest) {
-            chestsContext.updateOpenedChests();
+            chestsContext.updateOpenedChests(movement.nextPosition);
+        }
+
+        if (chestsContext.totalChests === chestsContext.openedChests.total && movement.nextMove.door) {
+            setTimeout(() => {
+                alert('You win!');
+                window.location.reload();
+            });
         }
     });
 

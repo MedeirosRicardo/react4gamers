@@ -20,6 +20,13 @@ function useEnemyMovement(initialPosition) {
             updateDirectionState(randomDirections);
             updatePositionState(movement.nextPosition);
         }
+
+        if (movement.nextMove.dead) {
+            setTimeout(() => {
+                alert('DEAD');
+                window.location.reload();
+            });
+        }
     }, 2000);
 
     return {
